@@ -7,45 +7,32 @@ class SongPair(object):
 		self.artist = artist
 		self.song = song
 
-# API Functions
+def main():
+	pairs = []
 
-def printHeader(pair):
-	print('---')	
-	print(result.song.name)
-	print(result.artist.name)
-	print('---')
-	print()
-		
+	while True:
+		try:
+			artist = input()
+			if not artist: 
+				break
 
-def printLyrics(result):
-	print('---')
-	print(result.song.lyric)
-	print('---')
-	print()
-
-# MAIN
-pairs = []
-
-while True:
-	try:
-		artist = input()
-		if not artist: 
+			song = input()
+			if not song:
+				break
+			else:
+				pairs.append(SongPair(artist, song))
+		except:
 			break
 
-		song = input()
-		if not song:
-			break
+	for count,pair in enumerate(pairs):
+		result = lyrics.find(pair.artist, pair.song)
+		if result.is_not_found():
+			print('[%s] Song not found.' % pair.song)
 		else:
-			pairs.append(SongPair(artist, song))
-	except:
-		break
+			output = open("songs/%d.%s.txt" % (count + 1, pair.song), "w+")
+			output.write(result.song.lyric)
+			output.write("\n")
+			output.close
 
-for count,pair in enumerate(pairs):
-	result = lyrics.find(pair.artist, pair.song)
-	if result.is_not_found():
-		print('[%s] Song not found.' % pair.song)
-	else:
-		output = open("songs/%d.%s.txt" % (count + 1, pair.song), "w+")
-		output.write(result.song.lyric)
-		output.write("\n")
-		output.close
+if __name__ == '__main__':
+    main()
