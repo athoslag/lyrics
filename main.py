@@ -40,10 +40,12 @@ while True:
 	except:
 		break
 
-for pair in pairs:
+for count,pair in enumerate(pairs):
 	result = lyrics.find(pair.artist, pair.song)
 	if result.is_not_found():
 		print('[%s] Song not found.' % pair.song)
 	else:
-		printHeader(result)
-		printLyrics(result)
+		output = open("songs/%d.%s.txt" % (count + 1, pair.song), "w+")
+		output.write(result.song.lyric)
+		output.write("\n")
+		output.close

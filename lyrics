@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -d songs ]; then
+	:
+  else
+    mkdir songs
+fi
+
+python3 main.py < songs.txt
