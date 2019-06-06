@@ -7,3 +7,9 @@ if [ -d songs ]; then
 fi
 
 python3 main.py < songs.txt
+echo vagalume [done]
+
+python3 graph.py
+echo graph [done]
+
+./clean
