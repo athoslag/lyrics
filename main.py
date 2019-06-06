@@ -12,12 +12,8 @@ def main():
 
 	while True:
 		try:
-			artist = input()
-			if not artist: 
-				break
-
-			song = input()
-			if not song:
+			artist, song = input().split(' -> ')
+			if not artist or not song: 
 				break
 			else:
 				pairs.append(SongPair(artist, song))
