@@ -5,30 +5,29 @@ This application was conveived as the final task for (CMP264/INF01071) Data Visu
 It was heavily inspired in Colin Morris' work, which can be found at https://youtu.be/_tjFwcmHy5M.
 
 ## Environment
-Install the `vagalume` lib using:
+To install the needed modules, you might need the Pip3 package manager. If you don't have it yet, I suggest you install it using the following command:
 
-    $ pip3 install vagalume
+    $ sudo apt-get install python3-pip
 
-For the graphics, you'll might also need the `matplotlib`, which can be obtained via:
+You can use other package managers, but it's not guaranteed they'll have the `vagalume` module, needed to get the lyrics.
+The needed libraries are `numpy`, `matplotlib` and `vagalume`, which can be installed using:
 
-    $ pip3 install matplotlib
+    $ pip3 install numpy matplotlib vagalume
+
+If you already have one or more of these modules, you can just ignore the respective ones.
 
 ## Usage
 Put the desired songs in the `songs.txt` file respecting the following format:
 
 `<artist name> -> <song name>`
 
-And don't forget to leave a blank line at the end of the file!
-
-The code can be executed with the following steps:
+To run the script, just execute the `lyrics` bash file:
 
     $ ./lyrics
 
-To clean the results, simply do:
-
-    $ ./clean
+Please note that the downloaded lyrics are deleted at the end of the script. If you want to prevent it, remove the `./clean` command from the end of the `lyrics` script file.
 
 ## API References & links
 The Vagalume API reference can be found at https://api.vagalume.com.br/docs/
 
-The Python API usage can be found at https://github.com/diegoteixeir4/python-vagalume
+The Vagalume Python API reference can be found at https://github.com/diegoteixeir4/python-vagalume
