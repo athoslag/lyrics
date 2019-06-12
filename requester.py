@@ -12,11 +12,14 @@ def saveToFile(filename, items):
 	except:
 		print('Error: could not write to %s' % filename)
 
-def infosFromJSON(response):
+def parseJSON(response):
 	infos = []
 	try:
-		responseJSON = response.json()
-		for music in responseJSON["mus"]:
+		if len(response["mus"]) == 0:
+			print('Radio has no musics.')
+			return []
+
+		for music in response["mus"]:
 			artistName = music["art"]["name"]
 			musicName = music["name"]
 			infos.append(artistName + ' -> ' + musicName)
@@ -33,14 +36,23 @@ def main():
 
 	# Performs the request
 	response = requests.get(url, params=payload)
-	print(response)
 
-	# Saves to JSON
-	data = infosFromJSON(response)
+	try:
+		responseJSON = response.json()
 
-	# Writes to file
-	saveToFile(radio, data)
-	print()
+		if responseJSON["status"] == 'error':
+			print('Error: ' + responseJSON["message"])
+			print()
+			return
+		else:
+			# Parses info from JSON
+			data = parseJSON(responseJSON)
+			
+			# Writes to file
+			saveToFile(radio, data)
+			print()
+	except:
+		print('Error: could not convert to JSON.')
 
 if __name__ == '__main__':
     main()
