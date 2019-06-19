@@ -10,7 +10,7 @@ def removePunctuation(strList):
 
 	return newList
 
-def countSong(originalLyrics):
+def countSong(originalLyrics, fileName):
 	words = []
 	occurencies = {}
 	lyrics = removePunctuation(originalLyrics.split())
@@ -25,12 +25,11 @@ def countSong(originalLyrics):
 	onlyOnce = 0
 
 	for key in occurencies:
-		print('[%s]: %i' % (key, occurencies[key]))
 		if occurencies[key] is 1:
 			onlyOnce += 1
 
 	repetitiveness = (len(lyrics) - onlyOnce) / len(lyrics)
-	print("Repetitiveness: {0:.2%}".format(repetitiveness))
+	print(fileName + " repetitiveness: {0:.2%}".format(repetitiveness))
 
 def getLyrics(file):
 	f = open(os.path.join('songs/',file),'r')
@@ -43,9 +42,8 @@ def main():
 
 	for file in sorted(files):
 		if os.path.isfile("songs/" + file):
-			print('Processing %s...' % file)
 			lyrics = getLyrics(file)
-			countSong(lyrics)
+			countSong(lyrics, file)
 		else:
 			print('os.path.isfile returned False.')
 
