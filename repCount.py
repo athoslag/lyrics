@@ -1,11 +1,21 @@
 import os
-from string import punctuation
+import string
 
-def countSong(lyrics):
+def removePunctuation(strList):
+	translator = str.maketrans('', '', string.punctuation)
+	newList = []
+	
+	for item in strList:
+		newList.append(item.translate(translator))
+
+	return newList
+
+def countSong(originalLyrics):
 	words = []
 	occurencies = {}
+	lyrics = removePunctuation(originalLyrics.split())
 
-	for word in lyrics.split():
+	for word in lyrics:
 		if word in words:
 			occurencies[word] += 1
 		else:
@@ -19,7 +29,7 @@ def countSong(lyrics):
 		if occurencies[key] is 1:
 			onlyOnce += 1
 
-	repetitiveness = (len(lyrics.split()) - onlyOnce) / len(lyrics.split())
+	repetitiveness = (len(lyrics) - onlyOnce) / len(lyrics)
 	print("Repetitiveness: {0:.2%}".format(repetitiveness))
 
 def getLyrics(file):
