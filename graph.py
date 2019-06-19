@@ -16,6 +16,10 @@ def colorIntensity(word):
 	return (words.index(word)/len(words)) * 0.5
 
 def getLyrics(file):
+	if file[0] is '.':
+		print('[graph.py] Ignoring file %s' % file)
+		return
+
 	f = open(os.path.join('songs/',file),'r')
 	lyrics = f.read()
 	f.close()
