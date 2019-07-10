@@ -2,7 +2,10 @@ import numpy as np
 import matplotlib.pylab as plt
 from matplotlib.colors import LogNorm
 import os
+import sys
 
+dirname = sys.argv[1]
+path = dirname + '/songs/'
 length = 0
 words = []
 colorspace = 'BuPu' # colorspace reference: https://matplotlib.org/users/colormaps.html
@@ -20,7 +23,7 @@ def getLyrics(file):
 		print('\t [graph.py] Ignoring file %s' % file)
 		return
 
-	f = open(os.path.join('songs/',file),'r')
+	f = open(os.path.join(dirname + '/songs/',file),'r')
 	lyrics = f.read()
 	f.close()
 	return lyrics
@@ -42,15 +45,15 @@ def processLyrics(lyrics, name):
 	c = ax0.pcolor(song)
 	ax0.set_title(name)
 	fig.tight_layout()
-	plt.savefig('graphs/' + name[:-4] + '.png')
+	plt.savefig(dirname + '/graphs/' + name[:-4] + '.png')
 
 def main():
-	files = os.listdir('songs/')
+	files = os.listdir(path)
 
 	print('\t files found: %d' % len(files))
 
 	for file in sorted(files):
-		if os.path.isfile("songs/" + file):
+		if os.path.isfile(path + file):
 			print('\t Processing %s...' % file)
 			lyrics = getLyrics(file)
 			processLyrics(lyrics, file)

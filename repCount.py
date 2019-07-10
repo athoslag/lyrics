@@ -1,6 +1,9 @@
 import os
 import string
+import sys
 
+dirname = sys.argv[1]
+path = dirname + '/songs/'
 reps = []
 
 def removePunctuation(strList):
@@ -13,7 +16,7 @@ def removePunctuation(strList):
 	return newList
 
 def saveReps():
-	output = open("repetitiveness.txt", "w+")
+	output = open("%s/repetitiveness.txt" % dirname, "w+")
 
 	for rep in reps:
 		output.write('%s\n' % rep)
@@ -44,16 +47,16 @@ def countSong(originalLyrics, fileName):
 	reps.append(fileName.split('.')[0] + ": {0:.2%}".format(repetitiveness))
 
 def getLyrics(file):
-	f = open(os.path.join('songs/',file),'r')
+	f = open(os.path.join(path,file),'r')
 	lyrics = f.read()
 	f.close()
 	return lyrics
 
 def main():
-	files = os.listdir('songs/')
+	files = os.listdir(path)
 
 	for file in sorted(files):
-		if os.path.isfile("songs/" + file):
+		if os.path.isfile(path + file):
 			lyrics = getLyrics(file)
 			countSong(lyrics, file)
 		else:

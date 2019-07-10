@@ -1,5 +1,6 @@
 from vagalume import lyrics
 import string
+import sys
 
 class SongPair(object):
 	"""A pair containing an Artist and a Song"""
@@ -19,6 +20,7 @@ def removePunctuation(strList):
 
 def main():
 	pairs = []
+	fileName = sys.argv[1]
 
 	while True:
 		try:
@@ -35,7 +37,7 @@ def main():
 		if result.is_not_found():
 			print('\t [%s] Song not found.' % pair.song)
 		else:
-			output = open("songs/%d.%s.txt" % (count + 1, pair.song), "w+")
+			output = open("%s/songs/%d.%s.txt" % (fileName, count + 1, pair.song), "w+")
 			processedLyric = removePunctuation(result.song.lyric.split())
 			
 			output.write(str(processedLyric))
