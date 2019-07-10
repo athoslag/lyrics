@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -Rf songs
+rm -Rf songs graphs

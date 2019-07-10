@@ -42,7 +42,7 @@ def processLyrics(lyrics, name):
 	c = ax0.pcolor(song)
 	ax0.set_title(name)
 	fig.tight_layout()
-	plt.savefig('graphs/' + name + '.png')
+	plt.savefig('graphs/' + name[:-4] + '.png')
 
 def main():
 	files = os.listdir('songs/')
