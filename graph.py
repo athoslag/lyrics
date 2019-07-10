@@ -17,7 +17,7 @@ def colorIntensity(word):
 
 def getLyrics(file):
 	if file[0] is '.':
-		print('[graph.py] Ignoring file %s' % file)
+		print('\t [graph.py] Ignoring file %s' % file)
 		return
 
 	f = open(os.path.join('songs/',file),'r')
@@ -46,15 +46,15 @@ def processLyrics(lyrics, name):
 def main():
 	files = os.listdir('songs/')
 
-	print('files found: %d' % len(files))
+	print('\t files found: %d' % len(files))
 
 	for file in sorted(files):
 		if os.path.isfile("songs/" + file):
-			print('Processing %s...' % file)
+			print('\t Processing %s...' % file)
 			lyrics = getLyrics(file)
 			processLyrics(lyrics, file)
 		else:
-			print('os.path.isfile returned False.')
+			print('\t os.path.isfile returned False.')
 	
 	plt.show()
 

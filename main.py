@@ -1,4 +1,5 @@
 from vagalume import lyrics
+import string
 
 class SongPair(object):
 	"""A pair containing an Artist and a Song"""
@@ -6,6 +7,15 @@ class SongPair(object):
 		super(SongPair, self).__init__()
 		self.artist = artist
 		self.song = song
+
+def removePunctuation(strList):
+	translator = str.maketrans('', '', string.punctuation)
+	newList = []
+
+	for item in strList:
+		newList.append(item.translate(translator))
+
+	return newList
 
 def main():
 	pairs = []
@@ -23,12 +33,15 @@ def main():
 	for count,pair in enumerate(pairs):
 		result = lyrics.find(pair.artist, pair.song)
 		if result.is_not_found():
-			print('[%s] Song not found.' % pair.song)
+			print('\t [%s] Song not found.' % pair.song)
 		else:
 			output = open("songs/%d.%s.txt" % (count + 1, pair.song), "w+")
-			output.write(result.song.lyric)
+			processedLyric = removePunctuation(result.song.lyric.split())
+			
+			output.write(str(processedLyric))
 			output.write("\n")
 			output.close
+			print('\t [%s] Done.' % pair.song)
 
 if __name__ == '__main__':
-    main()
+	main()
