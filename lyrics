@@ -6,6 +6,12 @@ if [ -d songs ]; then
     mkdir songs
 fi
 
+if [ -d graphs ]; then
+	:
+  else
+	mkdir graphs
+fi
+
 echo vagalume [start]
 python3 main.py < songs.txt
 echo vagalume [done]
