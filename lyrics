@@ -37,5 +37,3 @@ echo " "
 echo repCount [start]
 python3 repCount.py $dirname
 echo repCount [done]
-
-# ./clean
