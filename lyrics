@@ -6,10 +6,20 @@ if [ -d songs ]; then
     mkdir songs
 fi
 
+echo vagalume [start]
 python3 main.py < songs.txt
 echo vagalume [done]
 
+echo " "
+
+echo graph [start]
 python3 graph.py
 echo graph [done]
 
-./clean
+echo " "
+
+echo repCount [start]
+python3 repCount.py
+echo repCount [done]
+
+# ./clean
