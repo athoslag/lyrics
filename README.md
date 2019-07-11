@@ -17,15 +17,17 @@ The needed libraries are `numpy`, `matplotlib` and `vagalume`, which can be inst
 If you already have one or more of these modules, you can just ignore the respective ones.
 
 ## Usage
-Put the desired songs in the `songs.txt` file respecting the following format:
+Create an `<name>.txt` file with the `name` you want. 
+Then, fill it up with songs in the following format:
 
 `<artist name> -> <song name>`
 
 To run the script, just execute the `lyrics` bash file:
 
-    $ ./lyrics
+    $ ./lyrics <name>
 
-Please note that the downloaded lyrics are deleted at the end of the script. If you want to prevent it, remove the `./clean` command from the end of the `lyrics` script file.
+The results will be saved in a directory called `<name>_dir`, depending on the `name` you chose.
+You can remove all results running the `./clean` script.
 
 ## API References & links
 The Vagalume API reference can be found at https://api.vagalume.com.br/docs/
