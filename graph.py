@@ -49,10 +49,12 @@ def processLyrics(lyrics, name):
 
 def main():
 	files = os.listdir(path)
+	indexes = map(lambda x: (x.split('.'))[0], files)
+	zipped = zip(indexes, files)
 
 	print('\t files found: %d' % len(files))
 
-	for file in sorted(files):
+	for (idx,file) in sorted(zipped, key = lambda f: int(f[0])):
 		if os.path.isfile(path + file):
 			print('\t Processing %s...' % file)
 			lyrics = getLyrics(file)
