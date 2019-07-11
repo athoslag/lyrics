@@ -42,10 +42,11 @@ def processLyrics(lyrics, name):
 	fig, ax0 = plt.subplots(1)
 	plt.set_cmap(colorspace)
 
-	c = ax0.pcolor(song)
+	ax0.pcolor(song)
 	ax0.set_title(name)
 	fig.tight_layout()
 	plt.savefig(dirname + '/graphs/' + name[:-4] + '.png')
+	plt.close()
 
 def main():
 	files = os.listdir(path)
@@ -61,8 +62,6 @@ def main():
 			processLyrics(lyrics, file)
 		else:
 			print('\t os.path.isfile returned False.')
-	
-	plt.show()
 
 if __name__ == '__main__':
     main()
