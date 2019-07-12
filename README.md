@@ -12,7 +12,7 @@ To install the needed modules, you might need the Pip3 package manager. If you d
 You can use other package managers, but it's not guaranteed they'll have the `vagalume` module, needed to get the lyrics.
 The needed libraries are `numpy`, `matplotlib` and `vagalume`, which can be installed using:
 
-    $ pip3 install numpy matplotlib vagalume
+    $ pip3 install numpy matplotlib vagalume colorama
 
 If you already have one or more of these modules, you can just ignore the respective ones.
 
