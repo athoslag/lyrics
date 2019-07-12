@@ -1,3 +1,4 @@
 #!/bin/bash
 
 rm -rf *_dir
+python3 rst.py

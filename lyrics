@@ -26,14 +26,14 @@ echo vagalume [start]
 python3 main.py $dirname < $filename
 echo vagalume [done]
 
-# echo " "
+echo " "
 
-# echo graph [start]
-# python3 graph.py $dirname
-# echo graph [done]
+echo graph [start]
+python3 graph.py $dirname
+echo graph [done]
 
-# echo " "
+echo " "
 
-# echo repCount [start]
-# python3 repCount.py $dirname
-# echo repCount [done]
+echo repCount [start]
+python3 repCount.py $dirname
+echo repCount [done]
