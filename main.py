@@ -5,6 +5,8 @@ import string
 import sys
 import time
 
+fileName = sys.argv[1]
+
 class SongPair(object):
 	"""A pair containing an Artist and a Song"""
 	def __init__(self, artist, song):
@@ -21,9 +23,14 @@ def removePunctuation(strList):
 
 	return newList
 
+def saveFile(count, pair, lyr):
+	output = open("%s/lyrics/%d.%s.txt" % (fileName, count + 1, pair.song), "w+")
+	output.write(str(lyr))
+	output.write("\n")
+	output.close
+
 def main():
 	pairs = []
-	fileName = sys.argv[1]
 	found = 0
 
 	rejected = []
@@ -52,7 +59,9 @@ def main():
 			print(Fore.RED + '\t %d. [%s] Song not found.' % (count + 1, pair.song))
 		else:
 			output = open("%s/songs/%d.%s.txt" % (fileName, count + 1, pair.song), "w+")
-			processedLyric = removePunctuation(result.song.lyric.split())
+			lyric = result.song.lyric
+			saveFile(count, pair, lyric)
+			processedLyric = removePunctuation(lyric.split())
 			
 			output.write(str(processedLyric))
 			output.write("\n")
@@ -73,8 +82,10 @@ def main():
 				print(Fore.RED + '\t %d. [%s] Song not found.' % (count + 1, pair.song))
 			else:
 				output = open("%s/songs/%d.%s.txt" % (fileName, count + 1, pair.song), "w+")
-				processedLyric = removePunctuation(result.song.lyric.split())
-				
+				lyric = result.song.lyric
+				saveFile(count + 1, pair, lyric)
+				processedLyric = removePunctuation(lyric.split())
+
 				output.write(str(processedLyric))
 				output.write("\n")
 				output.close

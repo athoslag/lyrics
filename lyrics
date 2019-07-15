@@ -16,6 +16,12 @@ if [ -d $dirname/songs ]; then
     mkdir $dirname/songs
 fi
 
+if [ -d $dirname/lyrics ]; then
+	:
+  else
+    mkdir $dirname/lyrics
+fi
+
 if [ -d $dirname/graphs ]; then
 	:
   else
