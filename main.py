@@ -17,7 +17,7 @@ def removePunctuation(strList):
 	newList = []
 
 	for item in strList:
-		newList.append(item.translate(translator))
+		newList.append(item.translate(translator).lower())
 
 	return newList
 

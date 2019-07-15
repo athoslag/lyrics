@@ -1,3 +1,4 @@
+import operator
 import os
 import string
 import sys
@@ -35,13 +36,20 @@ def countSong(originalLyrics, fileName):
 			words.append(word)
 			occurencies[word] = 1
 
-	onlyOnce = 0
+	maxkey = str(max(occurencies.items(), key=operator.itemgetter(1))[0])
+	minkey = str(min(occurencies.items(), key=operator.itemgetter(1))[0])
+
+	badElements = 0
+	treshold = int((occurencies[maxkey] + occurencies[minkey]) / 4)
+
+	if treshold <= 2:
+		treshold = (occurencies[maxkey] + occurencies[minkey]) / 2
 
 	for key in occurencies:
-		if occurencies[key] is 1:
-			onlyOnce += 1
+		if occurencies[key] >= treshold:
+			badElements += occurencies[key]
 
-	repetitiveness = (len(lyrics) - onlyOnce) / len(lyrics)
+	repetitiveness = (len(lyrics) - (len(lyrics) - badElements)) / len(lyrics)
 	print("\t " + fileName + " repetitiveness: {0:.2%}".format(repetitiveness))
 
 	reps.append(fileName.split('.')[0] + ": {0:.2%}".format(repetitiveness))
