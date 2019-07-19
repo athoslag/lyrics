@@ -8,7 +8,7 @@ dirname = sys.argv[1]
 path = dirname + '/songs/'
 length = 0
 words = []
-colorspace = 'BuPu' # colorspace reference: https://matplotlib.org/users/colormaps.html
+colorspace = 'hot_r' # colorspace reference: https://matplotlib.org/users/colormaps.html
 
 def colorIntensity(word):
 	if len(word) < 3:
@@ -16,7 +16,7 @@ def colorIntensity(word):
 
 	if word not in words:
 		words.append(word)
-	return (words.index(word)/len(words)) * 0.5
+	return 1 - (words.index(word)/len(words)) * 0.5
 
 def getLyrics(file):
 	if file[0] is '.':
@@ -41,6 +41,7 @@ def processLyrics(lyrics, name):
 
 	fig, ax0 = plt.subplots(1)
 	plt.set_cmap(colorspace)
+	plt.gca().invert_yaxis()
 
 	ax0.pcolor(song)
 	ax0.set_title(name)

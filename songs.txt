@@ -1,2 +1,3 @@
 sabaton -> 7734
 aerosmith -> crazy
+daft punk -> around the world
